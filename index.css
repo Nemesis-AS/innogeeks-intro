@@ -14,6 +14,7 @@
     --accent-color: dodgerblue;
     --overlay-size: 96px;
     --overlay-radius: 32px;
+    --frame-color: #cfd5e7;
 }
 
 body {
@@ -23,6 +24,13 @@ body {
     background-color: var(--main-bg);
     color: var(--text-color);
 }
+
+/* @media (prefers-color-scheme: dark) {
+    body {
+        --main-bg: #443C68;
+        --text-color: #635985;
+    }
+} */
 
 header {
     display: flex;
@@ -38,6 +46,7 @@ button.nav-link {
     margin: 0 .5rem;
     border: none;
     cursor: pointer;
+    /* background-color: rgba(0, 0, 0, .1); */
     border-bottom: 2px solid transparent;
     transition: color 300ms, border-color 300ms;
 }
@@ -77,12 +86,43 @@ main[data-page="home"] .about-me .title {
     font-size: 4rem;
     font-weight: bold;
     font-family: "Passion One", Poppins;
+    background-image: linear-gradient(
+        45deg,
+        hsl(240deg 100% 20%) 0%,
+        hsl(289deg 100% 21%) 13%,
+        hsl(315deg 100% 27%) 29%,
+        hsl(329deg 100% 36%) 46%,
+        hsl(337deg 100% 43%) 61%,
+        hsl(357deg 91% 59%) 75%,
+        hsl(17deg 100% 59%) 86%,
+        hsl(34deg 100% 53%) 95%,
+        hsl(45deg 100% 50%) 99%,
+        hsl(55deg 100% 50%) 100%
+    );
+    background-size: 120%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradient-animation 4s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 main[data-page="home"] .about-me .socials {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1.25rem;
     padding: 2rem 0;
 }
@@ -115,6 +155,11 @@ main[data-page="home"] .image-div {
 
 main[data-page="home"] .image-div .img-holder {
     position: relative;
+    background-color: var(--frame-color);
+    border: 1rem solid var(--frame-color);
+    border-radius: 3rem;
+    overflow: hidden;
+    box-shadow: .5rem .5rem .5rem .25rem rgba(0, 0, 0, .5);
 }
 
 main[data-page="home"] .image-div img.avatar {
@@ -126,7 +171,7 @@ main[data-page="home"] .image-div img.avatar {
 main[data-page="home"] .image-div .img-overlay {
     width: var(--overlay-size);
     aspect-ratio: 1;
-    background-color: var(--main-bg);
+    background-color: var(--frame-color);
     position: absolute;
     transition: width 300ms, height 300ms;
 }
@@ -292,15 +337,19 @@ main[data-page="projects"] .projects .project-card a.card-link {
 
     main[data-page="home"] .image-div {
         grid-row: 1;
-        max-width: 95vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 90vw;
+        justify-self: center;
     }
 
     main[data-page="home"] .image-div .img-holder {
-        max-width: 95vw;
+        max-width: 80vw;
     }
 
     main[data-page="home"] .image-div .img-holder img {
-        max-width: 95vw;
+        max-width: 80vw;
     }
 
     main[data-page="stack"] {
